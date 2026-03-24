@@ -14,7 +14,7 @@ It’s a step up from the classic “Hello” program — moving from a simple g
 ---
 
 ## 💻 Example Run
-No of rows:3
+Number of rows:3
   #
  ##
 ###
