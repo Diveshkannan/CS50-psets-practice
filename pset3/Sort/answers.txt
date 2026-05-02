@@ -1,0 +1,17 @@
+sort1 uses: Bubble sort
+
+How do you know?: -- It takes a lot of time.
+                  -- It has bigger difference in time between randomly arranged numbers and reversely arranged numbers.
+                  -- Sorting time for randomly and reversely numbers are almost equal to sorting time for a already sorted number.
+
+sort2 uses: Merge sort
+
+How do you know?: -- It takes less time among the others
+                  -- It has no bigger difference in time between randomly arranged numbers and reversely arranged numbers.
+                  -- Even takes less time for already sorted numbers
+
+sort3 uses: Selection sort
+
+How do you know?: -- It takes moderate time among the others
+                  -- It has no bigger difference in time between randomly arranged numbers and reversely arranged numbers.
+                  -- Sorting time for randomly and reversely numbers are almost equal to sorting time for a already sorted number.
