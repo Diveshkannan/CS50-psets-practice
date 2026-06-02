@@ -1,4 +1,4 @@
-
+//Just actual code's idea
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
