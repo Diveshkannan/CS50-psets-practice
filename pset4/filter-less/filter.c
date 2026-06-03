@@ -1,4 +1,5 @@
-//Just actual code's idea
+#include "helpers.h"
+#include "math.h"
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -99,14 +100,15 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            copy[i][j].rgbtRed=image[i][j].rgbtRed;
-            copy[i][j].rgbtGreen=image[i][j].rgbtGreen;
-            copy[i][j].rgbtBlue=image[i][j].rgbtBlue;
+            copy[i][j].rgbtRed = image[i][j].rgbtRed;
+            copy[i][j].rgbtGreen = image[i][j].rgbtGreen;
+            copy[i][j].rgbtBlue = image[i][j].rgbtBlue;
         }
     }
     int red;
     int green;
     int blue;
+    int counter;
     for (int i = 0; i < height; i++)
     {
 
@@ -115,151 +117,23 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             red = 0;
             green = 0;
             blue = 0;
-            // top left corner
-            if (i == 0 && j == 0)
+            counter = 0;
+            for (int k = i - 1; k <= i + 1; k++)
             {
-                for (int k = 0; k <= i + 1; k++)
+                for (int l = j - 1; l <= j + 1; l++)
                 {
-                    for (int l = 0; l <= j + 1; l++)
+                    if (k >= 0 && l >= 0 && k < height && l < width)
                     {
                         red += copy[k][l].rgbtRed;
                         green += copy[k][l].rgbtGreen;
                         blue += copy[k][l].rgbtBlue;
+                        counter++;
                     }
                 }
-                image[i][j].rgbtRed = round(red / 4.0);
-                image[i][j].rgbtGreen = round(green / 4.0);
-                image[i][j].rgbtBlue = round(blue / 4.0);
             }
-            // top right corner
-            else if (i == 0 && j == width - 1)
-            {
-                for (int k = 0; k <= i + 1; k++)
-                {
-                    for (int l = j - 1; l <= j; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 4.0);
-                image[i][j].rgbtGreen = round(green / 4.0);
-                image[i][j].rgbtBlue = round(blue / 4.0);
-            }
-            // bottom left corner
-            else if (i == height - 1 && j == 0)
-            {
-                for (int k = i - 1; k <= i; k++)
-                {
-                    for (int l = 0; l <= j + 1; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 4.0);
-                image[i][j].rgbtGreen = round(green / 4.0);
-                image[i][j].rgbtBlue = round(blue / 4.0);
-            }
-            // bottom right corner
-            else if (i == height - 1 && j == width - 1)
-            {
-                for (int k = i - 1; k <= i; k++)
-                {
-                    for (int l = j - 1; l <= j; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 4.0);
-                image[i][j].rgbtGreen = round(green / 4.0);
-                image[i][j].rgbtBlue = round(blue / 4.0);
-            }
-            // left side middle
-            else if (j == 0)
-            {
-                for (int k = i - 1; k <= i + 1; k++)
-                {
-                    for (int l = 0; l <= j + 1; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 6.0);
-                image[i][j].rgbtGreen = round(green / 6.0);
-                image[i][j].rgbtBlue = round(blue / 6.0);
-            }
-            // top middle
-            else if (i == 0)
-            {
-                for (int k = 0; k <= i + 1; k++)
-                {
-                    for (int l = j - 1; l <= j + 1; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 6.0);
-                image[i][j].rgbtGreen = round(green / 6.0);
-                image[i][j].rgbtBlue = round(blue / 6.0);
-            }
-            // right side middle
-            else if (j == width - 1)
-            {
-                for (int k = i - 1; k <= i + 1; k++)
-                {
-                    for (int l = j - 1; l <= j; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 6.0);
-                image[i][j].rgbtGreen = round(green / 6.0);
-                image[i][j].rgbtBlue = round(blue / 6.0);
-            }
-            // bottom middle
-            else if (i == height - 1)
-            {
-
-                for (int k = i - 1; k <= i; k++)
-                {
-                    for (int l = j - 1; l <= j + 1; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 6.0);
-                image[i][j].rgbtGreen = round(green / 6.0);
-                image[i][j].rgbtBlue = round(blue / 6.0);
-            }
-            // centre
-            else
-            {
-                for (int k = i - 1; k <= i + 1; k++)
-                {
-                    for (int l = j - 1; l <= j + 1; l++)
-                    {
-                         red += copy[k][l].rgbtRed;
-                        green += copy[k][l].rgbtGreen;
-                        blue += copy[k][l].rgbtBlue;
-                    }
-                }
-                image[i][j].rgbtRed = round(red / 9.0);
-                image[i][j].rgbtGreen = round(green / 9.0);
-                image[i][j].rgbtBlue = round(blue / 9.0);
-            }
+            image[i][j].rgbtRed = round(red / (float) counter);
+            image[i][j].rgbtGreen = round(green / (float) counter);
+            image[i][j].rgbtBlue = round(blue / (float) counter);
         }
     }
 }
