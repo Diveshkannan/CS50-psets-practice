@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
                     jpeg_finder = true;
                 }
             }
-            if (buffer[i] == pattern[i])
+            else if (i!=3 && buffer[i] == pattern[i])
             {
                 continue;
             }
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
                     jpeg_finder = true;
                 }
             }
-            if (buffer[i] == pattern[i])
+            else if (i!=3 && buffer[i] == pattern[i])
             {
                 continue;
             }
