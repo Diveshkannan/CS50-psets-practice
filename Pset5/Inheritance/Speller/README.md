@@ -1,6 +1,6 @@
 # CS50 Speller — Hash Table Dictionary in C
 
-Overview
+## Overview
 
 This project implements the dictionary functionality for CS50's Speller problem in C. It loads a large dictionary into memory using a hash table, checks words efficiently for spelling mistakes, counts the number of words loaded, and safely unloads all dynamically allocated memory.
 
@@ -8,7 +8,7 @@ The project focuses on understanding hash tables, linked lists, pointers, dynami
 
 ---
 
-Features
+## Features
 
 - Written in C
 - Hash table implementation using an array of linked lists
@@ -28,7 +28,7 @@ Features
 
 ---
 
-Core Data Structure
+## Core Data Structure
 
 Each dictionary word is stored inside a linked-list node:
 
@@ -41,7 +41,7 @@ Each bucket can therefore point to a linked list containing all words that produ
 
 ---
 
-Hash Table Concept
+## Hash Table Concept
 
 The program converts each word into a bucket number using the "hash()" function.
 
@@ -60,7 +60,7 @@ The program uses separate chaining to handle collisions.
 
 ---
 
-Loading the Dictionary
+## Loading the Dictionary
 
 The "load()" function:
 
@@ -83,7 +83,7 @@ This inserts the new node at the front of the bucket's linked list.
 
 ---
 
-Why Insert at the Front?
+## Why Insert at the Front?
 
 An important part of this project was understanding why inserting at the front is useful.
 
@@ -106,7 +106,7 @@ This became one of the most important linked-list lessons from the project.
 
 ---
 
-Checking Words
+## Checking Words
 
 The "check()" function:
 
@@ -121,7 +121,7 @@ This avoids scanning all 143,091 dictionary words for every word in the text.
 
 ---
 
-Collision Handling
+## Collision Handling
 
 Different words can produce the same hash value.
 
@@ -146,7 +146,7 @@ This technique is called separate chaining.
 
 ---
 
-Counting the Dictionary
+## Counting the Dictionary
 
 The "size()" function traverses every bucket and every linked list.
 
@@ -156,7 +156,7 @@ This allows the program to report the total number of words loaded into memory.
 
 ---
 
-Unloading Memory
+## Unloading Memory
 
 The "unload()" function prevents memory leaks.
 
@@ -178,7 +178,7 @@ The next pointer must be saved before freeing the current node because accessing
 
 ---
 
-Performance
+## Performance
 
 Final implementation:
 
@@ -193,7 +193,7 @@ The implementation achieved fast performance while using significantly fewer buc
 
 ---
 
-Optimization Experiment
+## Optimization Experiment
 
 During development, I experimented with different numbers of buckets.
 
@@ -223,7 +223,7 @@ Fewer buckets reduce the table's memory usage but can create longer linked lists
 
 ---
 
-Memory Management
+## Memory Management
 
 The project uses dynamic memory allocation for dictionary nodes.
 
@@ -247,7 +247,7 @@ The implementation also attempts to clean up allocated nodes if a memory allocat
 
 ---
 
-Error Handling
+## Error Handling
 
 The program checks whether the dictionary file was successfully opened.
 
@@ -257,7 +257,7 @@ If memory allocation fails, the program calls "unload()" before returning failur
 
 ---
 
-CS50 Validation
+## CS50 Validation
 
 The implementation passed the CS50 Speller check50 tests, including:
 
@@ -274,7 +274,7 @@ This confirmed that the implementation was not only fast, but also functionally 
 
 ---
 
-What I Learned
+## What I Learned
 
 This project strengthened my understanding of:
 
@@ -302,7 +302,7 @@ Most importantly, I learned that a data structure is not just about making code 
 
 ---
 
-Personal Learning Note
+## Personal Learning Note
 
 One of the hardest parts of this project was not writing the syntax itself, but developing the mental model for how the hash table and linked lists interact.
 
@@ -319,7 +319,7 @@ That became a major lesson in thinking about data structures rather than simply 
 
 ---
 
-Author's Note
+## Author's Note
 
 Built as part of my CS50 learning journey.
 
