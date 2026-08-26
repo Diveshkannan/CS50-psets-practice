@@ -1,6 +1,7 @@
 while True:
     try:
            height = int(input("Height: "))
+
     except ValueError:
         print("Only integers.")
 
@@ -9,7 +10,16 @@ while True:
             print("Height: ",height)
             break
 for i in range(height):
-     print(" "*(height-i-1),end="")
-     print("#"*(i+1))
+     for j in range (height-i-1):
+          print(" ",end="")
+     for l in range(i+1):
+          print("#",end="")
+     print()
+
+
+
+
+
+
 
 
