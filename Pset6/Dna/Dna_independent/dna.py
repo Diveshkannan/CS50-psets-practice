@@ -10,15 +10,19 @@ def main():
 
 
 
-     f_dna = open(sys.argv[1], "r")
-     f_person = open(sys.argv[2], "r")
+     try:
+             with open(sys.argv[1]) as f_dna:
+                     read =list(csv.reader(f_dna))
 
-     data = f_person.read()
+             with open(sys.argv[2]) as f_person:
+                     data = f_person.read()
+     except FileNotFoundError:
+             print("File does not exist")
+             sys.exit(1)
+
+
 
      dna = dict()
-
-     read =list(csv.reader(f_dna))
-
 
      for person in read:
                 for seq in person:
@@ -33,13 +37,9 @@ def main():
                                      break
             else:
                       print(read[person][0])
-                      f_dna.close()
-                      f_person.close()
                       sys.exit(0)
      print("No match found")
-     f_dna.close()
-     f_person.close()
-     sys.exit(0)
+     sys.exit(1)
 
 def count(data,sequence):
       value = 0
@@ -54,19 +54,16 @@ def count(data,sequence):
                          if (i+j)<length_data:
                                 sub+=data[i+j]
               if sub == sequence:
-                     if value ==0:
-                             value+=1
-                             continous = True
-                     else:
-                           if continous:
                                   value+=1
-                     i+=length_seq
+                                  i+=length_seq
+
               else:
-                     continous = False
                      if value > 0:
-                             short_tandem_repeats.append(value)
+                            short_tandem_repeats.append(value)
+
                      value = 0
                      i+=1
+
       if len(short_tandem_repeats)==0:
               return 0
 
