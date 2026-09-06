@@ -1,153 +1,198 @@
-# DNA Profiling
+# DNA Profiling — CS50
 
-A Python implementation of a DNA profiling program that identifies an individual by comparing the number of consecutive **Short Tandem Repeats (STRs)** found in a DNA sequence against a database of known DNA profiles.
+A Python implementation of the **DNA Profiling** problem from Harvard's CS50.
 
-This project was completed as part of **CS50's Introduction to Computer Science — Week 6**.
+The program reads a DNA database containing people's STR (Short Tandem Repeat) counts, analyzes a target DNA sequence, and determines which person matches the calculated STR profile.
 
-## How It Works
+## Overview
 
 The program takes two command-line arguments:
 
-1. A **CSV database file** containing people's names and their STR counts.
-2. A **DNA sequence text file** containing the DNA sample to identify.
+1. A CSV file containing the DNA database.
+2. A text file containing the DNA sequence to analyze.
 
-The program:
+It then:
 
-1. Reads the DNA database using Python's `csv` module.
-2. Reads the DNA sequence from the provided text file.
-3. Identifies the STR sequences listed in the database.
-4. Calculates the longest consecutive run of each STR in the DNA sequence.
-5. Compares the calculated STR counts with every person's profile in the database.
-6. Prints the name of the matching individual.
-7. Prints `No match found` if no profile matches.
+* Reads the DNA database.
+* Identifies the STR sequences in the database.
+* Calculates the longest consecutive run of each STR in the target DNA.
+* Stores the calculated STR counts in a dictionary.
+* Compares the calculated profile against every person's profile.
+* Prints the matching person's name or `No match found`.
 
-## Requirements
+## How It Works
 
-* Python 3
-* A DNA database in CSV format
-* A DNA sequence in a text file
+### 1. Command-Line Arguments
 
-## Input Format
+The program expects exactly two arguments:
 
-### Database CSV
-
-The first row contains the column names. The first column must be `name`, followed by the STR sequences.
-
-Example:
-
-```csv
-name,AGAT,AATG,TATC
-Alice,28,42,14
-Bob,17,22,19
-Charlie,36,18,25
+```bash
+python dna.py database.csv sequence.txt
 ```
 
-Each person's row contains the expected number of consecutive repeats for each STR.
+If the required arguments are missing, the program exits with an error.
 
-### DNA Sequence
+### 2. Reading the Files
 
-The DNA sequence should be stored in a text file containing a sequence made up of:
+The database is read using Python's `csv` module:
 
-```text
-A
-T
-G
-C
+```python
+with open(sys.argv[1]) as f_dna:
+    read = list(csv.reader(f_dna))
 ```
+
+The target DNA sequence is read from the second file:
+
+```python
+with open(sys.argv[2]) as f_person:
+    data = f_person.read()
+```
+
+File errors are handled with `try`/`except`.
+
+### 3. Identifying STR Sequences
+
+The `check()` function determines whether a string contains only DNA bases:
+
+```python
+def check(sequence):
+    for i in sequence:
+        if i not in 'ATGC':
+            return False
+    return True
+```
+
+This allows the program to distinguish DNA STR sequences from the person's name and other database information.
+
+### 4. Calculating STR Repetitions
+
+The `count()` function searches the DNA sequence for consecutive repetitions of a particular STR.
+
+It keeps track of:
+
+* The current number of consecutive repetitions.
+* The STR length.
+* The positions being examined.
+* The completed repetition counts.
+
+When a mismatch occurs, the current run is stored. At the end, the maximum run is returned.
 
 For example:
 
 ```text
-AGATAGATAGAT...
+DNA:      AAAAAA
+STR:      AA
+
+AA → 1
+AA → 2
+AA → 3
 ```
 
-## Running the Program
+The longest consecutive repetition is therefore:
 
-Run the program from the terminal with:
-
-```bash
-python dna.py <database.csv> <sequence.txt>
+```text
+3
 ```
 
-Example:
+### 5. Building the DNA Profile
 
-```bash
-python dna.py databases/small.csv sequences/1.txt
+The calculated STR counts are stored in a dictionary:
+
+```text
+STR sequence → longest consecutive repetition
 ```
 
-The program will print the matching person's name if the STR profile matches.
+Conceptually:
 
-If there is no matching profile:
+```text
+{
+    "AGAT": 4,
+    "AATG": 2,
+    "TATC": 3
+}
+```
+
+This makes it possible to compare the calculated profile against each person's database row.
+
+### 6. Finding a Match
+
+The program loops through each person in the database and compares their STR counts with the calculated DNA profile.
+
+If every STR count matches, the person's name is printed.
+
+If no profile matches:
 
 ```text
 No match found
 ```
 
+## Technologies
+
+* Python
+* `csv`
+* `sys`
+* Dictionaries
+* File handling
+* Loops
+* Functions
+* String processing
+* Command-line arguments
+
+## Key Concepts Practiced
+
+This project helped reinforce several important programming concepts:
+
+* Reading and processing CSV files
+* Command-line arguments
+* Exception handling
+* Dictionaries
+* Nested loops
+* String indexing
+* Function decomposition
+* Algorithmic reasoning
+* Searching for consecutive patterns
+* Comparing structured data
+
 ## Project Structure
 
 ```text
-dna/
+.
 ├── dna.py
-├── databases/
-│   ├── small.csv
-│   └── large.csv
-└── sequences/
-    ├── 1.txt
-    ├── 2.txt
-    └── ...
+├── database.csv
+├── sequence.txt
+└── README.md
 ```
 
-## Functions
+## Running the Program
 
-### `main()`
+Run the program from the terminal:
 
-Handles:
+```bash
+python dna.py database.csv sequence.txt
+```
 
-* Command-line arguments
-* Reading the database
-* Reading the DNA sequence
-* Calculating STR counts
-* Comparing DNA profiles
-* Printing the result
+Example output:
 
-### `count(data, sequence)`
+```text
+Alice
+```
 
-Searches through the DNA sequence and determines the longest consecutive run of a particular STR.
+or:
 
-### `check(sequence)`
+```text
+No match found
+```
 
-Checks whether a string consists only of valid DNA bases:
+## Learning Reflection
 
-* `A` — Adenine
-* `T` — Thymine
-* `G` — Guanine
-* `C` — Cytosine
+The main challenge in this problem was not reading the files—it was designing the logic for finding the **longest consecutive STR repetition**.
 
-## What I Practiced
+Rather than directly copying the reference implementation, I worked through the problem by building my own approach using a dictionary, a DNA-validation function, and a custom STR-counting algorithm.
 
-This project gave me practice with:
+The process helped me understand that solving a programming problem is not only about getting the correct output. It is also about being able to **trace the algorithm, identify edge cases, simplify unnecessary state, and understand why the code works**.
 
-* Python functions
-* Command-line arguments with `sys.argv`
-* CSV processing with `csv.reader`
-* Dictionaries
-* Lists
-* Nested loops
-* `while` loops
-* String processing
-* Type conversion
-* Program control flow
-* Breaking a larger problem into smaller functions
-* Debugging an independently designed solution
+## Credits
 
-## Learning Note
+This project was completed as part of **Harvard University's CS50** course.
 
-I intentionally developed my own approach to the problem before comparing it with the CS50 implementation.
-
-The goal was not just to get the correct output, but to practice **thinking through the problem and designing the algorithm myself**.
-
-## Course
-
-**CS50's Introduction to Computer Science — Week 6**
-
-Topic: Python and DNA Profiling
+The problem is based on DNA profiling using Short Tandem Repeats (STRs).
