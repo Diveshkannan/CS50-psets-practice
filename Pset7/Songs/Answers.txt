@@ -1,0 +1,25 @@
+1.To determine Audio Aura which maintains the two most prominent mood of the user by referring the top most 100 songs listened by the user ?
+ $ I would create add another column "count" to keep count of number of times the user listened and user this
+ "SELECT valence,danceability FROM songs ORDER BY count DESC LIMIT 100;" and for energy average "SELECT AVG(energy) as energy_average FROM songs JOIN records ON songs.id = records.song_id LIMIT 100;" take their avg of energy , valence , danceability and check Russell's Circumplex Model by using Conditions.
+ $ Another method, I would first add a column "count" and increment it when user listens to it and push the top 100 most listened songs into a new table "records" with required columns
+  by "INSERT INTO records(id,name,artist_id,danceability,energy,valence) VALUES(SELECT id,name,artist_id,danceability,energy,valence FROM songs ORDER BY COUNT DESC LIMIT 100); . Then I would take data to main using
+  "SELECT danceability,valence FROM records; " and "SELECT AVG(energy) FROM records; " push them into variables in main and use condition to calculate
+   audio aura using Russell's Circumplex Model Of Affect.
+ $ If don't want to disturb the original tables, push everything to temp table ,use count and do the same work to records and store! . But it will take too much time.
+
+
+
+
+ 2.
+ $ This way would take a lot of time and the audio aura will stay temporary , but it can be added another column "Audio Aura" to songs after calculating it by using conditions.
+
+ $ This way would not be that representative , so we can index the table and its needed column to search as B-tree style (so fast) and can be taken the values avg(energy) as energy,valence,danceability
+ to variables in whatever language we use as main() and use conditions and store in a variable to have it permanent , instead of recalculating each time when page has to show up .
+
+ $ For efficiency, create a table with column user and audio aura instead of depending on variables stored in stack , because it's votatile .
+
+ $ Having these much tables would slower the duration and lags efficiency ,instead count can be added to songs table.
+
+
+
+
