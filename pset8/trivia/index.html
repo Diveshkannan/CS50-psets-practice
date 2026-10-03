@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+
+            function grade(quiz,answer,result) {
+                 if (result.innerText === "Correct"){
+                           return;
+
+
+                       }
+                      if ((quiz.innerText)===answer){
+                        result.innerHTML="Correct";
+                        quiz.style.backgroundColor="green";
+                         quiz.style.color = "white";
+                         this.check=false;
+
+
+                    }
+                      else{
+                        result.innerHTML="Incorrect";
+                        quiz.style.backgroundColor="red";
+                         quiz.style.color = "white";
+                      }
+
+
+            }
+
+            document.addEventListener("DOMContentLoaded",() => {
+
+
+
+            let quiz1 = document.querySelectorAll(".quiz-1");
+            var answers = document.querySelector("#answer1");
+            let answer1=answers.innerText;
+            let result1 = document.querySelector("#Result1MCQ");
+            quiz1.forEach((option) => {
+                option.addEventListener("click",() => grade(option,answer1,result1))
+            });
+
+
+
+            let quiz2 = document.querySelectorAll(".quiz-2");
+            var answers = document.querySelector("#answer2");
+            let answer2=answers.innerText;
+            let result2 = document.querySelector("#Result2MCQ");
+            quiz2.forEach((option) => {
+                option.addEventListener("click",() => grade(option,answer2,result2))
+
+
+            });
+
+
+            let quiz3 = document.querySelectorAll(".quiz-3");
+            var answers = document.querySelector("#answer3");
+            let answer3=answers.innerText;
+            let result3 = document.querySelector("#Result3MCQ");
+            quiz3.forEach((option) => {
+                option.addEventListener("click",() => grade(option,answer3,result3))
+            });
+
+
+             let btn1 = document.querySelector(".ques-1");
+             let ques=document.querySelector(".input");
+             let answerq1 ="SWITZERLAND";
+             let resultq1=document.querySelector(".Result1ques");
+             btn1.addEventListener("click",() => {
+                if (!(ques.value))
+             {
+
+                 resultq1.innerHTML="...........  Enter the value first   ..........";
+
+             }
+
+                else if(ques.value.toUpperCase() === answerq1)
+                 {
+                  ques.style.backgroundColor="green";
+                  resultq1.innerHTML="Correct";
+                  ques.color="white";
+                  ques.readOnly=true;
+
+                 }
+                  else{
+                ques.style.backgroundColor="red";
+                resultq1.innerHTML="Incorrect";
+                 ques.color="white";
+
+                  }
+
+             });
+
+
+
+
+  });
+
+
+
+
+
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                 <ol>
+                    <li id="1MCQ"><h3>What is the approximate ratio of people to sheep in New Zealand?          ..... <h3 id="Result1MCQ"></h3><br>
+                    <div class="options"><button type="button" class="quiz-1" value="1o1"><h3>6 people per 1 sheep</h3></button><button type="button" class="quiz-1" value="1o2"><h3>3 people per 1 sheep</h3></button><button type="button" class="quiz-1" value="1o3"><h3>1 people per 1 sheep</h3></button><button type="button" class="quiz-1" value="1o4"><h3>1 people per 3 sheep</h3></button><button type="button"  class="quiz-1"  value="1o5"><h3 id="answer1" >1 people per 6 sheep</h3></button></div></li>
+                    <li id="2MCQ"><h3>Which planet in our solar system currently holds the record for having the highest number of confirmed moons?          ..... <h3 id="Result2MCQ"></h3><br>
+                    <div class="options"><button type="button" class="quiz-2" value="2o1"><h3>Venus</h3></button><button type="button" class="quiz-2"value="2o2"><h3>Jupiter</h3></button><button type="button" class="quiz-2" value="2o3"><h3>Mars</h3></button><button type="button" class="quiz-2"  value="2o4"><h3 id="answer2">Saturn</h3></button><button type="button" class="quiz-2" value="2o5"><h3>Neptune</h3></button></div></li>
+                    <li id="3MCQ"><h3>What is the capital city of Australia?          ..... <h3 id="Result3MCQ"></h3><br>
+                    <div class="options"><button type="button" class="quiz-3" value="3o1"><h3>Sydney</h3></button><button type="button" class="quiz-3" value="3o2"><h3>Melbourne</h3></button><button type="button"class="quiz-3" value="3o3"><h3 id="answer3">Canberra</h3></button><button type="button" class="quiz-3" value="3o4"><h3>Brisbane</h3></button><button type="button" class="quiz-3" value="3o5"><h3>perth</h3></button></div></li>
+
+                 </ol>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                 <ol>
+                    <li><h3>In which country is it illegal to own only one guinea pig, as a long guinea pig might get lonely?</h3><br>
+                        <div class="options">
+
+                        <form class="work"
+                        ><input type="text" placeholder="Write your answer here......" autocomplete="off" class="input" required><button class="ques-1" type="button"><h3>Check Answer</h3></button></form>  <h3 class="Result1ques"></h3></div>
+
+
+                    </li>
+                 </ol>
+            </div>
+        </div>
+    </body>
+</html>
