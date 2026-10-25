@@ -1,0 +1,382 @@
+/* Used external references to find a colour configuration based on the colour style I wanted and for font styles */
+
+.header {
+    height: 130px;
+    position: sticky;
+    top: 0px;
+    z-index: 20;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 2px solid black;
+    background: linear-gradient(135deg,
+            #4a330b 0%,
+            /* Deep, dark gold shadow base */
+            #c59b27 40%,
+            /* Rich, warm metallic gold */
+            #e8c86b 48%,
+            /* Sharp highlight line (light gold) */
+            #ffffff 50%,
+            /* The "glaze" reflection (pure white core) */
+            #c59b27 52%,
+            /* Recovers back to rich metallic gold */
+            #302004 100%
+            /* Deepest gold/black shadow termination */
+        );
+
+}
+
+.quote {
+    text-align: center;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.navigation {
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+}
+
+.change {
+    width: 130px;
+    height: 45px;
+    font-family: 'Playfair Display', Georgia, serif;
+    background-color: rgba(123, 80, 34, 0.5);
+    border-radius: 25px;
+    border: 2px solid black;
+
+}
+
+.change:hover {
+    background-color: rgba(123, 80, 34, 0.9);
+    ;
+    box-shadow: 2px 2px 2px 2px;
+}
+
+body {
+    background: linear-gradient(135deg,
+            #1e2836 0%,
+            #2c3e50 40%,
+            #7f8c8d 48%,
+            #ffffff 50%,
+            #2c3e50 52%,
+            #1a252f 100%);
+
+}
+
+.body {
+    width: 100%;
+    height: 825px;
+    background: linear-gradient(135deg,
+            #1e2836 0%,
+            #2c3e50 40%,
+            #7f8c8d 48%,
+            #ffffff 50%,
+            #2c3e50 52%,
+            #1a252f 100%);
+}
+
+.head {
+    text-align: center;
+    font-family: 'Cambria';
+    font-weight: 500;
+    font-size: 100px;
+    color: rgba(255, 255, 255, 0.2);
+    margin-top: 30px;
+
+}
+
+.purpose {
+    margin-left: 50px;
+    font-family: 'Cambria';
+    font-weight: 300;
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.7);
+
+}
+
+.answer {
+    margin-left: 50px;
+    font-family: 'calibri';
+    font-weight: 150;
+    font-size: 29px;
+    color: rgba(255, 255, 255, 1);
+
+}
+
+a {
+    color: black;
+    font-family: 'Playfair Display', Georgia, serif;
+    underline: none;
+
+}
+
+.why {
+    font-family: 'calibri';
+    font-weight: 150;
+    font-size: 29px;
+    color: rgba(255, 255, 255, 1);
+
+}
+
+.founder {
+    font-family: 'calibri';
+    font-weight: 150;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 1);
+    margin-left: 80%;
+
+}
+
+.input {
+
+    font-family: 'cambria';
+    font-weight: 150;
+    font-size: 35px;
+    color: rgba(255, 255, 255, 1);
+    margin-left: 30px;
+}
+
+input {
+    background-color: black;
+    height: 50px;
+    width: 200px;
+    border-radius: 20px;
+    border: 2px solid white;
+    color: white;
+}
+
+input:hover {
+    border: 3px solid white;
+}
+
+
+.submit {
+    background-color: black;
+    height: 50px;
+    width: 150px;
+    border-radius: 20px;
+    border: 2px solid white;
+    color: white;
+    margin-left: 60px;
+}
+
+.image {
+    height: 300px;
+    width: 600px;
+    object-fit: cover;
+    display: inline-block;
+    margin-left: 30%;
+    border-radius: 15px;
+    margin-top: 0px;
+
+}
+
+
+.heading {
+    margin-left: 100px;
+    font-family: 'Cambria';
+    font-weight: 200;
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.5);
+
+
+}
+
+.details {
+
+    position: absolute;
+    z-index: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+
+}
+
+.lhs {
+    margin-left: 65px;
+    font-family: 'Cambria';
+    font-weight: 100;
+    z-index: 10;
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.8);
+
+}
+
+
+
+.Callout {
+    position: absolute;
+}
+
+.Callout_info {
+    text-align: center;
+    font-family: 'Cambria';
+    font-weight: 500;
+    font-size: 100px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 150px;
+
+
+}
+
+.switch {
+
+    height: 70px;
+    font-size: 25px;
+    font-family: "Cambria";
+    width: 140px;
+    border: 1px solid gold;
+    background-color: rgba(0, 50, 200, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+
+
+}
+
+.switch:hover {
+    border: 2px solid gold;
+    background-color: rgba(0, 50, 200, 0.6);
+
+}
+
+.alert {
+    margin-left: 950px;
+    font-size: 35px;
+    margin-bottom: 50px;
+    font-family: "Cambria";
+    font-weight: 50;
+    color: rgba(255, 255, 255, 0.8);
+
+
+}
+
+
+
+.Career {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    width: 90%;
+    margin-left: 50px;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 400px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 50px;
+
+}
+
+.Career:hover {
+    background: rgba(255, 255, 255, 0.4);
+
+}
+
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+
+}
+
+.profile-options {
+    margin-left: 900px;
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+
+}
+
+.pic {
+    margin-left: 38%;
+    margin-top: 10%;
+    height: 300px;
+    width: 300px;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.error {
+
+    margin-left: 38%;
+    font-family: 'Cambria';
+    font-weight: 300;
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.7);
+
+}
+
+.submit:hover {
+    border: 3px solid white;
+}
+
+
+.section {
+    height: 300px;
+    width: 800px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    margin-left: 380px;
+    margin-top: 200px;
+
+}
+
+.link_box {
+    height: 200px;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    margin-left: 40px;
+
+}
+
+.link_box:hover {
+    backgroundColor: rgba(255, 255, 255, 0, 6);
+    border: 3px solid black;
+}
+
+.link_Text {
+    font-size: 35px;
+    font-family: "Cambria";
+    color: black;
+    font-weight: 500;
+    text-align: Center;
+    padding-top: 20px;
+    -webkit-text-stroke: 2px gold;
+
+
+
+
+}
+
+.link_button {
+    width: 200px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    margin-left: 95px;
+
+
+
+}
+
+.link_button:hover {
+    border: 1px solid gold;
+
+}
+
+.cover {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
