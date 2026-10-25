@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+      
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Personal Workspace</title>
+        <script>
+            //navigation
+            document.addEventListener("DOMContentLoaded", () => {
+
+
+                let entry = sessionStorage.getItem("entry");
+
+                let entryfrompass = sessionStorage.getItem("password");
+
+                let entered;
+                if (entryfrompass === "true") {
+                    entered = true;
+                }
+                else {
+                    entered = false;
+                }
+
+
+
+                let options = document.querySelectorAll(".change");
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        let path = document.createElement("a");
+                        var destination = option.innerText.toLowerCase();
+                        path.href = destination + ".html";
+                        path.target = "self";
+                        path.click();
+                    });
+
+                });
+
+                let confirm = true;
+
+                let data = localStorage.getItem("sharedData");
+                let welcome = document.querySelector(".head");
+                let array = [];
+                if (data) {
+                    if (entry !== "true" && entered == false) {
+                        window.location.href = "password.html";
+                        return;
+
+                    }
+
+                    array = data.split(",");
+                    welcome.innerHTML = "Welcome back," + " " + array[0][0].toUpperCase() + array[0].slice(1);
+
+                }
+                else {
+                    welcome.innerHTML = "";
+                    confirm = false;
+                    alert("We need you to login before use");
+                }
+
+
+
+
+
+                let path = localStorage.getItem("path");
+                let first = document.querySelector("#first");
+                let second = document.querySelector("#second");
+                let third = document.querySelector("#third");
+                let first_b = document.querySelector("#st");
+                let second_b = document.querySelector("#nd");
+                let third_b = document.querySelector("#rd");
+                let box = document.querySelectorAll(".link_box");
+                let pose = document.querySelectorAll(".purpose");
+                let paths;
+
+                let plan;
+
+
+
+
+                if (path) {
+                    paths = path.split(",");
+                    plan = paths[0];
+                    console.log(plan);
+                }
+                else {
+                    confirm = false;
+                    alert("Choose to choose path");
+                }
+
+                first = document.querySelector("#first");
+                second = document.querySelector("#second");
+                third = document.querySelector("#third");
+
+
+
+
+                let vs;
+                let git;
+                let linkedin;
+                if (data) {
+                    vs = array[6];
+                    git = array[7];
+                    linkedin = array[8];
+
+
+                }
+                else {
+                    confirm = false;
+                    alert("Login first");
+                }
+
+
+                let personal_button = document.querySelectorAll("#link");
+
+
+                if (confirm) {
+
+
+
+
+                    first.hidden = false;
+                    second.hidden = false;
+                    third.hidden = false;
+                    first_b.hidden = false;
+                    second_b.hidden = false;
+                    third_b.hidden = false;
+                    box.forEach((boxes) => {
+                        boxes.hidden = false;
+                    });
+                    pose.forEach((poses) => {
+                        poses.hidden = false;
+                    });
+
+
+
+                    first_b = document.querySelector("#st");
+                    second_b = document.querySelector("#nd");
+                    third_b = document.querySelector("#rd");
+                    if (plan === "css") {
+                        first.innerHTML = "Harvard";
+                        first_b.name = "css_H";
+
+                        second.innerHTML = "Coursera";
+                        second_b.name = "css_C";
+
+                        third.innerHTML = "MIT";
+                        third_b.name = "css_M";
+
+                    }
+                    else if (plan === "ece") {
+                        first.innerHTML = "MIT";
+                        first_b.name = "ece_M";
+
+                        second.innerHTML = "IIT Kanpur";
+                        second_b.name = "ece_IIT";
+
+                        third.innerHTML = "Yonsei";
+                        third_b.name = "ece_Y";
+
+
+                    }
+                    else if (plan === "eee") {
+                        first.innerHTML = "MIT";
+                        first_b.name = "eee_M";
+
+                        second.innerHTML = "Georgia";
+                        second_b.name = "eee_G";
+
+                        third.innerHTML = "Tsinghua";
+                        third_b.name = "eee_T";
+
+
+                    }
+                    else if (plan === "csa") {
+                        first.innerHTML = "Harvard";
+                        first_b.name = "csa_H";
+
+                        second.innerHTML = "Helsinki";
+                        second_b.name = "csa_He";
+
+                        third.innerHTML = "Stanford";
+                        third_b.name = "csa_S";
+
+
+                    }
+
+                }
+                else {
+
+                    first.hidden = true;
+                    second.hidden = true;
+                    third.hidden = true;
+                    first_b.hidden = true;
+                    second_b.hidden = true;
+                    third_b.hidden = true;
+                    box.hidden = true;
+                    pose.hidden = true;
+                    box.forEach((boxes) => {
+                        boxes.hidden = true;
+                    });
+                    pose.forEach((poses) => {
+                        poses.hidden = true;
+                    });
+
+
+
+                    alert("You did not properly login or choose your plan");
+                }
+
+
+                first_b.addEventListener("click", (event) => {
+                    if (event.target.name === "css_H") {
+                        var link = document.createElement('a');
+                        link.href = "https://pll.harvard.edu/course/cs50-introduction-computer-science";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                    else if (event.target.name === "ece_M") {
+                        var link = document.createElement('a');
+                        link.href = "https://ocw.mit.edu/courses/6-450-principles-of-digital-communications-i-fall-2006/";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                    else if (event.target.name === "eee_M") {
+                        var link = document.createElement('a');
+                        link.href = "https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+                    else if (event.target.name === "csa_H") {
+                        var link = document.createElement('a');
+                        link.href = "https://www.edx.org/learn/web-development/harvard-university-cs50-s-web-programming-with-python-and-javascript";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                });
+
+
+                second_b.addEventListener("click", (event) => {
+
+                    if (event.target.name === "css_C") {
+                        var link = document.createElement('a');
+                        link.href = "https://www.coursera.org/specializations/introduction-computer-science-programming";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                    else if (event.target.name === "ece_IIT") {
+                        var link = document.createElement('a');
+                        link.href = "https://www.careers360.com/courses-certifications/free-electronics-and-communication-engineering-courses";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                    else if (event.target.name === "eee_G") {
+                        var link = document.createElement('a');
+                        link.href = "https://www.coursera.org/learn/linear-circuits-dcanalysis";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+                    else if (event.target.name === "csa_He") {
+                        var link = document.createElement('a');
+                        link.href = "https://fullstackopen.com/en/";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                });
+
+
+                third_b.addEventListener("click", (event) => {
+
+
+                    if (event.target.name === "css_M") {
+                        var link = document.createElement('a');
+                        link.href = " https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                    else if (event.target.name === "ece_Y") {
+                        var link = document.createElement('a');
+                        link.href = "https://www.coursera.org/learn/wireless-communications";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                    else if (event.target.name === "eee_T") {
+                        var link = document.createElement('a');
+                        link.href = "https://www.edx.org/learn/circuits/tsinghua-university-principles-of-electric-circuits-dian-lu-yuan-li";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+                    else if (event.target.name === "csa_S") {
+                        var link = document.createElement('a');
+                        link.href = "https://www.coursera.org/specializations/machine-learning-introduction";
+                        link.target = "_blank";
+                        link.click();
+
+                    }
+
+                });
+
+                personal_button.forEach((button) => {
+                    button.addEventListener("click", (event) => {
+                        if (event.target.name === "vs") {
+                            var link = document.createElement('a');
+                            link.href = vs;
+                            link.target = "_blank";
+                            link.click();
+
+                        }
+
+                        else if (event.target.name === "git") {
+                            var link = document.createElement('a');
+                            link.href = git;
+                            link.target = "_blank";
+                            link.click();
+                        }
+
+                        else if (event.target.name === "in") {
+                            var link = document.createElement('a');
+                            link.href = linkedin;
+                            link.target = "_blank";
+                            link.click();
+                        }
+                    });
+                });
+
+
+
+
+
+
+
+
+
+            });
+
+
+
+        </script>
+    </head>
+
+    <body>
+        <div class="body">
+            <div class="header">
+                <h3 class="quote">"🏆If you burn out exhausted, remember why you started this!!🏆"</h3>
+                <div class="navigation">
+                    <button type="button" class="change">About-us</button>
+
+                    <button type="button" class="change">Choose-path</button>
+                    <button type="button" class="change">Login</button>
+                    <button type="button" class="change">Profile</button>
+
+                </div>
+            </div>
+            <div class="main">
+                <h1 class="head"></h1>
+                <div class="cover">
+
+                    <div>
+                        <h3 class="purpose">Here you go </h3>
+                        <div class="link_box">
+                            <p class="link_Text" id="first"></p>
+
+                            <button type="button" id="st" class="link_button">Start</button>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+                        <h3 class="purpose">Try this </h3>
+                        <div class="link_box">
+                            <p class="link_Text" id="second"></p>
+
+                            <button type="button" id="nd" class="link_button">Start</button>
+
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+                        <h3 class="purpose">Crack this </h3>
+                        <div class="link_box">
+                            <p class="link_Text" id="third"></p>
+
+                            <button type="button" id="rd" class="link_button">Start</button>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <hr>
+
+
+                <div class="cover">
+
+                    <div>
+
+                        <h3 class="purpose">Build this </h3>
+                        <div class="link_box">
+                            <p class="link_Text" id="vs">VS Code</p>
+
+                            <button type="button" id="link" name="vs" class="link_button">Enter</button>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="purpose">Document it </h3>
+                        <div class="link_box">
+                            <p class="link_Text" id="git">Github</p>
+
+                            <button type="button" id="link" name="git" class="link_button">Enter</button>
+
+
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="purpose">Publicity </h3>
+                        <div class="link_box">
+                            <p class="link_Text" id="in">Linkedin</p>
+
+                            <button type="button" id="link" name="in" class="link_button">Enter</button>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </body>
+
+</html>
