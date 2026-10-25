@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+   
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Personal Workspace</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                let options = document.querySelectorAll(".change");
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        let path = document.createElement("a");
+                        var destination = option.innerText.toLowerCase();
+                        if (destination === "home")
+                    {
+                        destination="index";
+                        sessionStorage.setItem("entry","true");
+                    }
+                    else
+                    {
+                        sessionStorage.removeItem("entry");
+                    }
+                        path.href = destination + ".html";
+                        path.target = "_self";
+                        path.click();
+                    });
+
+                });
+
+
+
+
+
+            });
+
+        </script>
+    </head>
+
+    <body>
+        <div class="body">
+            <div class="header">
+                <h3 class="quote">"🏆It's never a failure , its just learning one more pattern to handle mistakes🏆"</h3>
+                <div class="navigation">
+                    <button type="button" class="change">Home</button>
+                    <button type="button" class="change">Login</button>
+                    <button type="button" class="change">Choose-Path</button>
+                    <button type="button" class="change">Profile</button>
+
+                </div>
+            </div>
+            <div class="main">
+                <h1 class="head">About us</h1>
+                <h3 class="purpose">What's our purpose</h3>
+                <p class="answer">I have experienced and have seen people trying to keep their dream work out of other eyes.I have seen people having curiosity but standing blind with no path in hands. All I wanted to come up a intelligent platform to let people see their path and keep it protected !!!</p>
+
+                <h3 class="purpose">Why Personal Workspace</h3>
+                <p class="answer">
+                    Choose your path . Make progress . Keep your dreams protected . Progess brings succession . You get reputated
+                </p>
+                <h3 class="purpose">Updates</h3>
+                <p class="answer">Make it dynamic . Store data . Use flask . Connect python .Connect SQL . More effient . More speed . More variety . Add AI to seek information on paths . AI chatbot </p>
+                <p class="founder">Copyright(C) Personal Workspace  DiveshKannan T</p>
+            </div>
+        </div>
+
+    </body>
+
+</html>
