@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+     
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Personal Workspace</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                let options = document.querySelectorAll(".change");
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        let path = document.createElement("a");
+                        var destination = option.innerText.toLowerCase();
+                        if (destination === "home") {
+                            destination = "index";
+                            sessionStorage.setItem("entry", "true");
+                        }
+                        else {
+                            sessionStorage.removeItem("entry");
+                        }
+                        path.href = destination + ".html";
+                        path.target = "_self";
+                        path.click();
+                    });
+
+                });
+
+                alert("Don't use comma in your data");
+                let press = document.querySelector(".submit");
+                press.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+
+
+                    let name = document.querySelector("#name");
+                    let age = document.querySelector("#age");
+                    let default_Age = 0;
+                    if (!(age.value)) {
+                        default_Age = -1;
+                    }
+                    let contact = document.querySelector("#contact");
+                    let nationality = document.querySelector("#country");
+                    let password = document.querySelector("#password");
+                    let vs = document.querySelector("#vs");
+                    let linkedin = document.querySelector("#linkedin");
+                    let git = document.querySelector("#git");
+                    let check = true;
+                    let array_error = []
+
+                    if (((linkedin.value).toString()).includes(",")) {
+                         check = false;
+                        linkedin.style.backgroundColor = "red";
+                        array_error.push("linkedin");
+
+                    }
+                    else {
+                        array_error = array_error.filter(items => items !== "linkedin");
+                        linkedin.style.backgroundColor = "black";
+
+
+                    }
+
+
+                    if (((git.value).toString()).includes(",")) {
+                        check = false;
+                        git.style.backgroundColor = "red";
+                        array_error.push("git");
+                    }
+                    else {
+                        array_error = array_error.filter(items => items !== "git");
+                        git.style.backgroundColor = "black";
+
+
+                    }
+
+
+
+                    if (((vs.value).toString()).includes(",")) {
+                        check = false;
+                        vs.style.backgroundColor = "red";
+                        array_error.push("vs");
+                    }
+                    else {
+                        array_error = array_error.filter(items => items !== "vs");
+                        vs.style.backgroundColor = "black";
+
+
+                    }
+
+
+                    if ((name.value).includes(",")) {
+
+                        check = false;
+                        name.style.backgroundColor = "red";
+                        array_error.push("name");
+                    }
+                    else {
+                        array_error = array_error.filter(items => items !== "name");
+                        name.style.backgroundColor = "black";
+
+                    }
+                    if ((contact.value).includes(",")) {
+
+                        check = false;
+                        contact.style.backgroundColor = "red";
+                        array_error.push("contact");
+                    }
+                    else {
+                        array_error = array_error.filter(items => items !== "contact");
+                        contact.style.backgroundColor = "black";
+                    }
+                    if ((nationality.value).includes(",")) {
+
+                        check = false;
+                        nationality.style.backgroundColor = "red";
+                        array_error.push("nationality");
+                    }
+                    else {
+                        array_error = array_error.filter(items => items !== "nationality");
+                        nationality.style.backgroundColor = "black";
+                    }
+                    if ((password.value).includes(",")) {
+
+                        check = false;
+                        password.style.backgroundColor = "red";
+                        array_error.push("password");
+                    }
+                    else {
+                        array_error = array_error.filter(items => items !== "password");
+                        password.style.backgroundColor = "black";
+                    }
+
+
+
+                    if (check) {
+
+                        if ((linkedin.value).length == 0) {
+                            if (!array_error.includes("linkedin")) {
+                                array_error.push("linkedin");
+                            }
+                            linkedin.style.backgroundColor = "red";
+
+
+
+
+
+                        }
+                        else {
+
+                            if (!(URL.canParse(linkedin.value))) {
+
+                                linkedin.style.backgroundColor = "red";
+                                if (!array_error.includes("linkedin")) {
+                                    array_error.push("linkedin");
+                                }
+
+                            }
+                            else {
+                                array_error = array_error.filter(items => items !== "linkedin");
+                                linkedin.style.backgroundColor = "black";
+                            }
+
+                        }
+
+
+                        if (((git.value).toString()).length == 0) {
+                            if (!array_error.includes("git")) {
+                                array_error.push("git");
+                            }
+                            git.style.backgroundColor = "red";
+
+
+                        }
+                        else {
+
+                            if (!(URL.canParse(git.value))) {
+                                if (!array_error.includes("git")) {
+                                    array_error.push("git");
+                                }
+                                git.style.backgroundColor = "red";
+
+
+                            }
+                            else {
+                                array_error = array_error.filter(items => items !== "git");
+                                git.style.backgroundColor = "black";
+                            }
+
+                        }
+
+
+                        if (((vs.value).toString()).length == 0) {
+                            if (!array_error.includes("vs")) {
+                                array_error.push("vs");
+                            }
+                            vs.style.backgroundColor = "red";
+
+
+                        }
+                        else {
+                            if (!(URL.canParse(vs.value))) {
+                                if (!array_error.includes("vs")) {
+                                    array_error.push("vs");
+                                }
+                                vs.style.backgroundColor = "red";
+
+                            }
+
+
+                            else {
+                                array_error = array_error.filter(items => items !== "vs");
+                                vs.style.backgroundColor = "black";
+                            }
+                        }
+
+
+
+                            if ((name.value).length == 0) {
+
+                                if (!array_error.includes("name")) {
+                                    array_error.push("name");
+                                }
+                                name.style.backgroundColor = "red";
+
+                            }
+                            else {
+                                array_error = array_error.filter(items => items !== "name");
+                                name.style.backgroundColor = "black";
+
+                            }
+                            if ((nationality.value).length == 0) {
+
+                                nationality.style.backgroundColor = "red";
+
+                                if (!array_error.includes("nationality")) {
+                                    array_error.push("nationality");
+                                }
+
+                            }
+                            else {
+
+                                nationality.style.backgroundColor = "black";
+                                array_error = array_error.filter(items => items !== "nationality");
+                            }
+                            if ((contact.value).length == 0) {
+
+
+                                if (!array_error.includes("contact")) {
+                                    array_error.push("contact");
+                                }
+                                contact.style.backgroundColor = "red";
+
+
+                            }
+                            else {
+
+                                contact.style.backgroundColor = "black";
+                                array_error = array_error.filter(items => items !== "contact");
+                            }
+                            if (default_Age == -1) {
+
+                                age.style.backgroundColor = "red";
+
+                                if (!array_error.includes("age")) {
+                                    array_error.push("age");
+                                }
+                            } else {
+
+                                age.style.backgroundColor = "black";
+                                array_error = array_error.filter(items => items !== "age");
+                            }
+
+                            if ((password.value).length == 0) {
+
+
+                                if (!array_error.includes("password")) {
+                                    array_error.push("password");
+                                }
+                                password.style.backgroundColor = "red";
+
+
+                            }
+                            else {
+
+                                password.style.backgroundColor = "black";
+                                array_error = array_error.filter(items => items !== "password");
+                            }
+
+
+
+
+                            if (array_error.length == 0) {
+                                check = true;
+                                localStorage.setItem("sharedData", [name.value, age.value, contact.value, nationality.value, check, password.value, vs.value, git.value, linkedin.value]);
+                                window.location.href = "profile.html";
+                            }
+                            else {
+                                alert("Enter all data required");
+                            }
+                        }
+                    else
+                        {
+                            alert("Enter the data without comma inside");
+                        }
+
+
+                    });
+
+
+
+
+
+
+
+
+
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="body">
+            <div class="header">
+                <h3 class="quote">"🏆If you burn out exhausted, remember why you started this!!🏆"</h3>
+                <div class="navigation">
+                    <button type="button" class="change">Home</button>
+                    <button type="button" class="change">About-Us</button>
+
+                    <button type="button" class="change">Choose-Path</button>
+                    <button type="button" class="change">Profile</button>
+
+                </div>
+            </div>
+
+
+
+
+
+
+            <h1 class="head">Login</h1>
+            <form>
+                <label for="name" class="input">Name - </label>
+                <input type="text" autocomplete="off" id="name" name="name" required>
+                <br>
+                <label for="contact" class="input">Contact - </label>
+                <input type="text" autocomplete="off" name="contact" id="contact" required>
+                <br>
+                <label for="age" class="input">Age - </label>
+                <input type="number" name="age" id="age" autocomplete="off" required>
+                <br>
+                <label for="country" class="input">Nationality - </label>
+                <input type="text" id="country" name="nationality" autocomplete="off" required>
+                <br>
+                <label for="password" class="input">Password - </label>
+                <input type="password" id="password" name="password" autocomplete="off" required>
+                <br>
+                <label for="vs" class="input">VS Code link - </label>
+                <input type="url" id="vs" name="vs" autocomplete="off" required>
+                <br>
+                <label for="git" class="input">Github link - </label>
+                <input type="url" id="git" name="git" autocomplete="off" required>
+                <br>
+                <label for="linkedin" class="input">Linkedin link - </label>
+                <input type="url" id="linkedin" name="linkedin" autocomplete="off" required>
+                <br>
+
+                <button class="submit" type="submit">Submit</button>
+
+
+
+
+
+
+            </form>
+
+
+
+        </div>
+        </div>
+
+    </body>
+
+</html>
