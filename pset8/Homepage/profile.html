@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+       
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Personal Workspace</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                let options = document.querySelectorAll(".change");
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        let path = document.createElement("a");
+                        var destination = option.innerText.toLowerCase();
+                        if (destination === "home") {
+                            destination = "index";
+                            sessionStorage.setItem("entry", "true");
+                        }
+                        else {
+                            sessionStorage.removeItem("entry");
+                        }
+                        path.href = destination + ".html";
+                        path.target = "_self";
+                        path.click();
+                    });
+
+                });
+
+
+                let logout = document.querySelector("#logout");
+                let head = document.querySelector(".heading");
+                let say = document.querySelector(".Callout_info");
+                let name = document.querySelector("#name");
+                let age = document.querySelector("#age");
+                let rm_plan = document.querySelector("#Remove_plan");
+                let contact = document.querySelector("#contact");
+                let nationality = document.querySelector("#nationality");
+                let details = localStorage.getItem("sharedData");
+                let plan = document.querySelector("#plan");
+                let plan_show = document.querySelector("#path");
+                let password = document.querySelector("#pass");
+                let vs = document.querySelector("#vs");
+                let lnk = document.querySelector("#linkedin");
+                let git = document.querySelector("#git");
+
+
+
+
+
+
+
+                if (details) {
+                    let array = details.split(",");
+                    let check;
+
+                    if (array[4] === "false") {
+                        check = false;
+                    }
+                    else {
+                        check = true;
+                    }
+                    if (!check) {
+                        say.innerHTML = "Logged out";
+                        logout.innerHTML = "Login";
+                        name.hidden = true;
+                        lnk.hidden = true;
+                        rm_plan.hidden = true;
+                        age.hidden = true;
+                        contact.hidden = true;
+                        git.hidden = true;
+                        plan.hidden = true;
+                        nationality.hidden = true;
+                        password.hidden = true;
+                        document.querySelector(".details").hidden = true;
+                        head.hidden = true;
+                        vs.hidden = true;
+
+
+                    }
+                    else {
+
+
+
+                        say.innerHTML = "Logged in";
+                        logout.innerHTML = "Logout";
+                        name.hidden = false;
+                        age.hidden = false;
+                        contact.hidden = false;
+                        nationality.hidden = false;
+                        git.hidden = false;
+                        plan.hidden = false;
+                        password.hidden = false;
+                        lnk.hidden = false;
+                        vs.hidden = false;
+                        head.hidden = false;
+                        document.querySelector(".details").hidden = false;
+
+
+
+
+
+
+                        let name_Value = " - ";
+                        if (array[0]) {
+                            name_Value += array[0][0].toUpperCase() + array[0].slice(1);
+
+                        }
+                        name.innerHTML += name_Value;
+
+
+                        let age_Value = " - ";
+                        if (array[1]) {
+                            age_Value += array[1];
+
+                        }
+                        age.innerHTML += age_Value;
+
+
+
+                        let contact_Value = " - ";
+                        if (array[2]) {
+
+                            contact_Value += array[2];
+
+
+
+                        }
+                        contact.innerHTML += contact_Value;
+
+
+
+                        let nation = " - ";
+                        if (array[3]) {
+                            nation += array[3][0].toUpperCase() + array[3].slice(1);
+
+                        }
+                        nationality.innerHTML += nation;
+
+                        let pass = " " + " - ";
+                        if (array[5]) {
+                            pass += array[5];
+
+                        }
+                        password.innerHTML += pass;
+
+
+                        let vs_v=" "+" - ";
+                        if(array[6])
+                        {
+                            vs_v+=array[6];
+                        }
+                        vs.innerHTML+=vs_v;
+
+
+                        let git_v=" "+" - ";
+                        if(array[7])
+                        {
+                            git_v+=array[7];
+                        }
+                        git.innerHTML+=git_v;
+
+                        let linkedin_v=" "+" - ";
+                        if(array[8])
+                        {
+                            linkedin_v+=array[8];
+                        }
+                        lnk.innerHTML+=linkedin_v;
+
+
+
+
+                    }
+
+                }
+                else {
+                    say.innerHTML = "Logged out";
+                    logout.innerHTML = "Login";
+                    name.hidden = true;
+                    age.hidden = true;
+                    contact.hidden = true;
+                    vs.hidden = true;
+                    plan.hidden = true;
+                    git.hidden = true;
+                    rm_plan.hidden = true;
+                    password.hidden = true;
+                    lnk.hidden = true;
+                    nationality.hidden = true;
+                    document.querySelector(".details").hidden = true;
+                    head.hidden = true;
+                }
+
+
+                logout.addEventListener("click", () => {
+
+                    if (logout.innerText === "Logout") {
+
+                        say.innerHTML = "Logged out";
+                        logout.innerHTML = "Login";
+                        name.hidden = true;
+                        age.hidden = true;
+                        contact.hidden = true;
+                        password.hidden = true;
+                        vs.hidden = true;
+                        plan_show.hidden = true;
+                        git.hidden = true;
+                        lnk.hidden = true;
+                        nationality.hidden = true;
+                          rm_plan.hidden = true;
+                        plan.hidden = true;
+                         head.hidden = true;
+                        document.querySelector(".details").hidden = true;
+
+                        localStorage.removeItem("sharedData");
+
+                        localStorage.removeItem("path");
+
+
+
+
+
+
+                    }
+                    else if (logout.innerText === "Login") {
+                               window.location.href = "login.html";
+
+                    }
+
+                });
+
+                let plan_Details = localStorage.getItem("path");
+                let array_paths = [];
+                let entry;
+                if (plan_Details) {
+                    array_paths = plan_Details.split(",");
+                    if (array_paths[1] === "true") {
+
+                        entry = true;
+                    }
+                    else {
+                        entry = false;
+                    }
+                    if (entry) {
+
+                        rm_plan.hidden = false;
+                        rm_plan.innerHTML = "Remove Plan";
+                        plan_show.hidden = false;
+
+
+                        if (array_paths[0] === "css") {
+                            var content = " " + "-" + " ";
+                            content += "Computer Science Engineering";
+                            plan_show.innerHTML += content;
+                            plan.innerHTML = "Change Plan";
+                        }
+                        else if (array_paths[0] === "csa") {
+                            var content = " " + "-" + " ";
+                            content += "Computer Science Application";
+                            plan_show.innerHTML += content;
+                            plan.innerHTML = "Change Plan";
+                        }
+                        else if (array_paths[0] === "ece") {
+
+
+                            var content = " " + "-" + " ";
+                            content += "Electrical Communication Engineering";
+                            plan_show.innerHTML += content;
+                            plan.innerHTML = "Change Plan";
+                        }
+                        else if (array_paths[0] === "eee") {
+
+                            var content = " " + "-" + " ";
+                            content += "Electical Engineering";
+                            plan_show.innerHTML += content;
+                            plan.innerHTML = "Change Plan";
+                        }
+
+                    }
+                    else {
+                        plan_show.hidden = true;
+                        plan.innerHTML = "Choose Plan";
+                        rm_plan.hidden = true;
+
+                    }
+
+
+                }
+                else {
+                    plan.innerHTML = "Choose Plan";
+                    plan_show.hidden = true;
+                    rm_plan.hidden = true;
+                }
+
+
+
+
+
+
+
+                rm_plan.addEventListener("click", () => {
+                    localStorage.removeItem("path");
+                    window.location.reload();
+                    alert("Plan removed");
+                });
+
+
+                   plan.addEventListener("click", () => {
+                    localStorage.setItem("check_Exist", plan.innerText);
+
+
+                    window.location.href = "choose-path.html";
+                });
+
+
+
+
+            });
+
+
+
+        </script>
+    </head>
+
+    <body>
+        <div class="body">
+            <div class="header">
+                <h3 class="quote">"🏆If you burn out exhausted, remember why you started this!!🏆"</h3>
+                <div class="navigation">
+                    <button type="button" class="change">Home</button>
+                    <button type="button" class="change">About-Us</button>
+                    <button type="button" class="change">login</button>
+                    <button type="button" class="change">Choose-Path</button>
+
+
+                </div>
+            </div>
+            <div class="main">
+                <h1 class="head">profile page</h1>
+
+                <h3 class="heading">Details</h3>
+
+                  <div class="profile-options">
+                    <button type="button" id="logout" class="switch"></button>
+                    <button type="button" id="plan" class="switch"></button>
+                    <button type="button" id="Remove_plan" class="switch"></button>
+
+
+                </div>
+                <div class="details">
+
+
+                    <p class="lhs" id="name">Name</p>
+                    <br>
+                    <p class="lhs" id="age">Age</p>
+                    <br>
+                    <p class="lhs" id="contact">Contact</p>
+                    <br>
+                    <p class="lhs" id="nationality">Nationality</p>
+                    <br>
+                    <p class="lhs" id="path">Path</p>
+                    <br>
+                    <p class="lhs" id="pass">Password</p>
+                    <br>
+                    <p class="lhs" id="vs">VS Code</p>
+                    <br>
+                    <p class="lhs" id="git">Github</p>
+                    <br>
+                    <p class="lhs" id="linkedin">Linkedin</p>
+
+
+
+                </div>
+
+
+                <div class="callout">
+                    <h1 class="Callout_info"></h1>
+                </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </body>
+
+
+</html>
