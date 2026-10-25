@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+     
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>Personal Workspace</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                let options = document.querySelectorAll(".change");
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        let path = document.createElement("a");
+                        var destination = option.innerText.toLowerCase();
+                        if (destination === "home") {
+                            destination = "index";
+                            sessionStorage.setItem("entry", "true");
+                        }
+                        else {
+                            sessionStorage.removeItem("entry");
+                        }
+                        path.href = destination + ".html";
+                        path.target = "_self";
+                        path.click();
+                    });
+
+                });
+                let check = false;
+
+                let path = localStorage.getItem("path");
+                if (path) {
+
+
+                    let detail = path.split(",");
+                    if (detail[1]) {
+                        let id = "#" + detail[0];
+                        let tag = document.querySelector(id);
+                        tag.style.backgroundColor = "rgba(255,255,255,1)";
+                    }
+                }
+
+                let plan;
+
+                let exist = localStorage.getItem("check_Exist");
+                if (exist === "Change Plan") {
+                    localStorage.removeItem("path");
+                    plan = [];
+
+                }
+                else if (exist === "Choose Plan") {
+                    plan = [];
+                }
+
+
+
+                let details = localStorage.getItem("sharedData");
+                if (!details) {
+                    alert("First choose to login");
+                }
+                else {
+
+
+                    let array = details.split(",");
+                    let paths = document.querySelectorAll(".Career");
+                    paths.forEach((option) => {
+                        option.addEventListener("click", () => {
+                            check = true;
+
+
+                            if (plan.length == 0) {
+
+
+                                localStorage.setItem("path", [option.id, check]);
+                                plan.push(option.id);
+                                option.style.backgroundColor = "rgba(255, 255, 255, 1)";
+                                window.location.href = "profile.html";
+                            }
+                            else {
+                                check = false;
+                                localStorage.setItem("path", [option.id, check]);
+                                alert("Only one plan can be chosen");
+                            }
+
+                        });
+
+                    });
+
+
+                }
+
+            });
+
+        </script>
+    </head>
+
+    <body>
+        <div class="body">
+            <div class="header">
+                <h3 class="quote">"🏆If you burn out exhausted, remember why you started this!!🏆"</h3>
+                <div class="navigation">
+                    <button type="button" class="change">Home</button>
+                    <button type="button" class="change">About-Us</button>
+
+                    <button type="button" class="change">Login</button>
+                    <button type="button" class="change">Profile</button>
+
+                </div>
+            </div>
+            <div class="main">
+                <h1 class="head">Personal Workspace - choose path </h1>
+                <br>
+                <br>
+
+                <div class="options">
+                    <button type="button" class="Career" id="css">Computer Science - Software</button>
+                    <button type="button" class="Career" id="csa">Computer Science - Application</button>
+                    <button type="button" class="Career" id="ece">Electrical Communication</button>
+                    <button type="button" class="Career" id="eee">Electrical Engineering</button>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>
